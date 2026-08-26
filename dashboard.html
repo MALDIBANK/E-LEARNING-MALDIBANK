@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><span class="seal">E</span> Course</div>
+    <nav>
+      <span id="who" class="muted"></span>
+      <a id="admin-link" href="admin.html" style="display:none;">Admin</a>
+      <a href="#" data-sign-out>Sign out</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    <h1>Your progress</h1>
+    <p class="muted">Complete every module, then take the final exam to earn your certificate.</p>
+
+    <div class="card">
+      <div class="progress-track"><div id="progress-fill" class="progress-fill" style="width:0%"></div></div>
+      <div id="progress-label" class="progress-label">0 of 0 modules complete</div>
+    </div>
+
+    <div id="modules" class="module-grid"></div>
+
+    <div class="card stack" id="next-steps-card">
+      <h2 style="margin-bottom:0.2rem;">Next steps</h2>
+      <div id="next-steps" class="stack"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+    import { MODULES } from "./assets/js/modules-config.js";
+    import { requireAuth, wireSignOutButtons } from "./assets/js/auth.js";
+
+    wireSignOutButtons();
+
+    const auth = await requireAuth();
+    if (auth) {
+      const { session, profile } = auth;
+      document.getElementById("who").textContent = profile?.full_name || session.user.email;
+      if (profile?.role === "admin") document.getElementById("admin-link").style.display = "inline";
+
+      const { data: progressRows } = await supabase
+        .from("progress")
+        .select("module_id")
+        .eq("user_id", session.user.id);
+      const completedIds = new Set((progressRows || []).map(r => r.module_id));
+
+      const total = MODULES.length;
+      const done = completedIds.size;
+      document.getElementById("progress-fill").style.width = `${total ? (done / total) * 100 : 0}%`;
+      document.getElementById("progress-label").textContent = `${done} of ${total} modules complete`;
+
+      const grid = document.getElementById("modules");
+      grid.innerHTML = MODULES.map((m, i) => {
+        const complete = completedIds.has(m.id);
+        return `
+          <div class="module-card">
+            ${complete ? `<div class="stamp">Complete</div>` : ""}
+            <div>
+              <div class="num">Module ${String(i + 1).padStart(2, "0")}</div>
+              <h3>${m.title}</h3>
+            </div>
+            <div class="cta">
+              <a class="btn ${complete ? "btn-ghost" : "btn-primary"}" href="module.html?slug=${m.slug}">
+                ${complete ? "Review" : "Start"}
+              </a>
+            </div>
+          </div>`;
+      }).join("");
+
+      // Exam / certificate / feedback state
+      const { data: attempts } = await supabase
+        .from("exam_attempts")
+        .select("score, passed, submitted_at")
+        .eq("user_id", session.user.id)
+        .order("submitted_at", { ascending: false });
+      const passed = (attempts || []).some(a => a.passed);
+
+      const { data: feedbackRows } = await supabase
+        .from("feedback_responses")
+        .select("id")
+        .eq("user_id", session.user.id);
+      const gaveFeedback = (feedbackRows || []).length > 0;
+
+      const allDone = done === total && total > 0;
+      const steps = document.getElementById("next-steps");
+      const items = [];
+
+      if (!allDone) {
+        items.push(`<div class="muted">Finish all modules to unlock the final exam.</div>`);
+      } else if (!passed) {
+        items.push(`<div><a class="btn btn-primary" href="exam.html">Take the final exam</a>
+          ${attempts && attempts.length ? `<div class="muted" style="margin-top:0.5em;">Last attempt: ${attempts[0].score}% — not yet passed. You can retake it.</div>` : ""}</div>`);
+      } else {
+        items.push(`<div><a class="btn btn-brass" href="certificate.html">Get your certificate</a>
+          <span class="muted" style="margin-left:0.6em;">Exam passed with ${attempts[0].score}%</span></div>`);
+        items.push(gaveFeedback
+          ? `<div class="muted">Thanks — you've already submitted the feedback survey.</div>`
+          : `<div><a class="btn btn-ghost" href="feedback.html">Share feedback on the course</a></div>`);
+      }
+      steps.innerHTML = items.join("");
+    }
+  </script>
+</body>
+</html>

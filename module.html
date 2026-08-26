@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><span class="seal">E</span> Course</div>
+    <nav>
+      <a href="dashboard.html">← Back to dashboard</a>
+      <a href="#" data-sign-out>Sign out</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    <div class="num mono" id="module-eyebrow" style="font-family:var(--font-mono); color:var(--brass-dark);"></div>
+    <h1 id="module-title">Loading…</h1>
+
+    <div class="card prose" id="module-content">Loading module content…</div>
+
+    <div class="spacer"></div>
+    <div class="row" style="justify-content:space-between; align-items:center;">
+      <span id="status" class="muted"></span>
+      <button id="complete-btn" class="btn btn-primary">Mark as complete</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+    import { MODULES } from "./assets/js/modules-config.js";
+    import { requireAuth, wireSignOutButtons } from "./assets/js/auth.js";
+
+    wireSignOutButtons();
+    const auth = await requireAuth();
+    if (auth) {
+      const { session } = auth;
+      const slug = new URLSearchParams(window.location.search).get("slug");
+      const mod = MODULES.find(m => m.slug === slug);
+
+      if (!mod) {
+        document.getElementById("module-content").innerHTML = "Module not found.";
+      } else {
+        const idx = MODULES.findIndex(m => m.slug === slug) + 1;
+        document.getElementById("module-eyebrow").textContent = `Module ${String(idx).padStart(2, "0")}`;
+        document.getElementById("module-title").textContent = mod.title;
+
+        // Load + render markdown content
+        const res = await fetch(mod.contentFile);
+        const md = res.ok ? await res.text() : "_Content file not found — add it under /content._";
+        const { marked } = await import("https://cdn.jsdelivr.net/npm/marked@12/+esm");
+        document.getElementById("module-content").innerHTML = marked.parse(md);
+
+        // Check existing completion
+        const { data: existing } = await supabase
+          .from("progress")
+          .select("id")
+          .eq("user_id", session.user.id)
+          .eq("module_id", mod.id)
+          .maybeSingle();
+
+        const btn = document.getElementById("complete-btn");
+        const status = document.getElementById("status");
+        if (existing) {
+          btn.textContent = "Completed ✓";
+          btn.disabled = true;
+          status.textContent = "You've already marked this module complete.";
+        }
+
+        btn.addEventListener("click", async () => {
+          btn.disabled = true;
+          const { error } = await supabase
+            .from("progress")
+            .upsert({ user_id: session.user.id, module_id: mod.id }, { onConflict: "user_id,module_id" });
+          if (error) {
+            status.textContent = "Something went wrong — try again.";
+            btn.disabled = false;
+            return;
+          }
+          btn.textContent = "Completed ✓";
+          status.textContent = "Saved. Redirecting to your dashboard…";
+          setTimeout(() => window.location.href = "dashboard.html", 900);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

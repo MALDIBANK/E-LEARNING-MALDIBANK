@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Feedback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .likert { display: flex; gap: 0.6rem; margin: 0.4rem 0 1.4rem; }
+  .likert label { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; font-weight: 400; font-size: 0.78rem; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><span class="seal">E</span> Course</div>
+    <nav>
+      <a href="dashboard.html">← Back to dashboard</a>
+      <a href="#" data-sign-out>Sign out</a>
+    </nav>
+  </div>
+
+  <div class="wrap" style="max-width:640px;">
+    <h1>How was the course?</h1>
+    <p class="muted">Your feedback helps us improve the training. This takes about a minute.</p>
+
+    <div id="banner"></div>
+
+    <form id="feedback-form" class="card">
+      <div id="q-content">
+        <label>The module content was clear and easy to follow</label>
+        <div class="likert" data-q="content_clarity"></div>
+      </div>
+      <div id="q-relevance">
+        <label>The training was relevant to my day-to-day work</label>
+        <div class="likert" data-q="relevance"></div>
+      </div>
+      <div id="q-exam">
+        <label>The final exam fairly tested what was covered in the modules</label>
+        <div class="likert" data-q="exam_fairness"></div>
+      </div>
+      <div id="q-overall">
+        <label>Overall satisfaction with this e-learning course</label>
+        <div class="likert" data-q="overall_satisfaction"></div>
+      </div>
+
+      <label for="comments">Anything you'd change, or other comments?</label>
+      <textarea id="comments" rows="4" placeholder="Optional"></textarea>
+
+      <button class="btn btn-primary" type="submit">Submit feedback</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+    import { requireAuth, wireSignOutButtons } from "./assets/js/auth.js";
+
+    wireSignOutButtons();
+    const auth = await requireAuth();
+    if (auth) {
+      const { session } = auth;
+
+      // Build the 1-5 rating scales
+      document.querySelectorAll(".likert").forEach((el) => {
+        const q = el.dataset.q;
+        el.innerHTML = [1,2,3,4,5].map(n => `
+          <label>
+            <input type="radio" name="${q}" value="${n}" required>
+            ${n}
+          </label>
+        `).join("");
+      });
+
+      const banner = document.getElementById("banner");
+      const form = document.getElementById("feedback-form");
+
+      // Already submitted? show a friendly notice instead of the form.
+      const { data: existing } = await supabase
+        .from("feedback_responses")
+        .select("id")
+        .eq("user_id", session.user.id)
+        .maybeSingle();
+      if (existing) {
+        form.style.display = "none";
+        banner.innerHTML = `<div class="banner success">You've already submitted feedback for this course — thank you!</div>`;
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const ratings = {};
+        ["content_clarity","relevance","exam_fairness","overall_satisfaction"].forEach(q => {
+          const checked = form.querySelector(`input[name="${q}"]:checked`);
+          if (checked) ratings[q] = parseInt(checked.value, 10);
+        });
+        const comments = document.getElementById("comments").value;
+
+        const { error } = await supabase
+          .from("feedback_responses")
+          .insert({ user_id: session.user.id, ratings, comments });
+
+        if (error) {
+          banner.innerHTML = `<div class="banner error">${error.message}</div>`;
+          return;
+        }
+        form.style.display = "none";
+        banner.innerHTML = `<div class="banner success">Thanks for the feedback!</div>`;
+      });
+    }
+  </script>
+</body>
+</html>
