@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><span class="seal">E</span> Course</div>
+    <nav>
+      <a href="dashboard.html">← Back to dashboard</a>
+      <a href="#" data-sign-out>Sign out</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    <h1>Final exam</h1>
+    <p class="muted">Answer every question, then submit. You need 80% to pass — you can retake it if needed.</p>
+
+    <div id="banner"></div>
+    <form id="exam-form" class="card"></form>
+
+    <div class="spacer"></div>
+    <button id="submit-btn" class="btn btn-primary">Submit exam</button>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+    import { requireAuth, wireSignOutButtons } from "./assets/js/auth.js";
+
+    wireSignOutButtons();
+    const auth = await requireAuth();
+    if (auth) {
+      const form = document.getElementById("exam-form");
+      const banner = document.getElementById("banner");
+      const submitBtn = document.getElementById("submit-btn");
+
+      const { data: questions, error } = await supabase
+        .from("exam_questions_public")
+        .select("*")
+        .order("sort_order");
+
+      if (error || !questions || !questions.length) {
+        form.innerHTML = `<p class="muted">No exam questions are configured yet.</p>`;
+        submitBtn.style.display = "none";
+      } else {
+        form.innerHTML = questions.map((q, i) => `
+          <div class="question">
+            <h3>${i + 1}. ${q.question}</h3>
+            ${q.choices.map((choice, ci) => `
+              <label class="choice">
+                <input type="radio" name="q-${q.id}" value="${ci}" required>
+                <span>${choice}</span>
+              </label>
+            `).join("")}
+          </div>
+        `).join("");
+
+        submitBtn.addEventListener("click", async () => {
+          if (!form.reportValidity()) return;
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting…";
+
+          const answers = {};
+          questions.forEach(q => {
+            const checked = form.querySelector(`input[name="q-${q.id}"]:checked`);
+            if (checked) answers[q.id] = parseInt(checked.value, 10);
+          });
+
+          const { data, error } = await supabase.rpc("submit_exam", { p_answers: answers });
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit exam";
+
+          if (error) {
+            banner.innerHTML = `<div class="banner error">${error.message}</div>`;
+            return;
+          }
+          const result = data[0];
+          if (result.passed) {
+            banner.innerHTML = `<div class="banner success">You passed with ${result.score}%! Redirecting to your certificate…</div>`;
+            setTimeout(() => window.location.href = "certificate.html", 1200);
+          } else {
+            banner.innerHTML = `<div class="banner error">You scored ${result.score}% — 80% is required to pass. Review the modules and try again.</div>`;
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

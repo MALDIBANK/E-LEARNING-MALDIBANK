@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Learner Progress</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><span class="seal">E</span> Course — Admin</div>
+    <nav>
+      <a href="dashboard.html">My dashboard</a>
+      <a href="#" data-sign-out>Sign out</a>
+    </nav>
+  </div>
+
+  <div class="wrap" style="max-width:1100px;">
+    <div class="row" style="justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+      <div>
+        <h1>Learner progress</h1>
+        <p class="muted" id="summary"></p>
+      </div>
+      <div class="row">
+        <input id="search" type="text" placeholder="Search by name or email" style="min-width:220px; margin-bottom:0;">
+        <button id="export-btn" class="btn btn-ghost">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="card" style="overflow-x:auto; padding:0;">
+      <table id="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Modules</th>
+            <th>Best exam score</th>
+            <th>Exam passed</th>
+            <th>Attempts</th>
+            <th>Certificate</th>
+            <th>Feedback</th>
+            <th>Signed up</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+    import { requireAdmin, wireSignOutButtons } from "./assets/js/auth.js";
+
+    wireSignOutButtons();
+    const auth = await requireAdmin();
+    if (auth) {
+      const { data: rows, error } = await supabase
+        .from("admin_learner_overview")
+        .select("*")
+        .order("signed_up_at", { ascending: false });
+
+      const tbody = document.getElementById("tbody");
+      const summary = document.getElementById("summary");
+
+      if (error) {
+        summary.textContent = error.message;
+      } else {
+        summary.textContent = `${rows.length} learner${rows.length === 1 ? "" : "s"} enrolled`;
+
+        const render = (data) => {
+          tbody.innerHTML = data.map(r => `
+            <tr>
+              <td>${r.full_name || "—"}</td>
+              <td>${r.email || "—"}</td>
+              <td>${r.modules_completed}/${r.modules_total}</td>
+              <td class="mono">${r.best_exam_score ?? "—"}</td>
+              <td><span class="badge ${r.exam_passed ? "yes" : "no"}">${r.exam_passed ? "Passed" : "Not yet"}</span></td>
+              <td>${r.exam_attempts_count}</td>
+              <td>${r.certificate_code ? `<span class="mono">${r.certificate_code}</span>` : "—"}</td>
+              <td><span class="badge ${r.feedback_submitted ? "yes" : "no"}">${r.feedback_submitted ? "Submitted" : "Pending"}</span></td>
+              <td class="mono">${new Date(r.signed_up_at).toLocaleDateString()}</td>
+            </tr>
+          `).join("");
+        };
+        render(rows);
+
+        document.getElementById("search").addEventListener("input", (e) => {
+          const q = e.target.value.toLowerCase();
+          render(rows.filter(r =>
+            (r.full_name || "").toLowerCase().includes(q) ||
+            (r.email || "").toLowerCase().includes(q)
+          ));
+        });
+
+        document.getElementById("export-btn").addEventListener("click", () => {
+          const headers = ["Name","Email","Modules completed","Modules total","Best exam score","Exam passed","Attempts","Certificate code","Feedback submitted","Signed up"];
+          const csvRows = rows.map(r => [
+            r.full_name, r.email, r.modules_completed, r.modules_total,
+            r.best_exam_score, r.exam_passed, r.exam_attempts_count,
+            r.certificate_code, r.feedback_submitted, r.signed_up_at
+          ]);
+          const csv = [headers, ...csvRows]
+            .map(row => row.map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(","))
+            .join("\n");
+          const blob = new Blob([csv], { type: "text/csv" });
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "learner-progress.csv";
+          a.click();
+        });
+      }
+    }
+  </script>
+</body>
+</html>

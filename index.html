@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learner Sign In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="wrap" style="max-width:420px; padding-top:4rem;">
+    <div class="center" style="margin-bottom:2rem;">
+      <div class="seal" style="width:44px;height:44px;margin:0 auto 0.8rem;border:2px solid var(--brass);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);color:var(--brass-dark);">E</div>
+      <h1 style="font-size:1.7rem;">Course Access</h1>
+      <p class="muted">Sign in to continue your modules, or create an account to get started.</p>
+    </div>
+
+    <div class="card">
+      <div class="row" style="margin-bottom:1.2rem; border-bottom:1px solid var(--line); padding-bottom:0.2rem;">
+        <button id="tab-signin" class="btn btn-ghost" style="border:none; border-bottom:2px solid var(--ink); border-radius:0;">Sign in</button>
+        <button id="tab-signup" class="btn btn-ghost" style="border:none;">Create account</button>
+      </div>
+
+      <div id="banner"></div>
+
+      <form id="form-signin">
+        <label for="si-email">Email</label>
+        <input id="si-email" type="email" required autocomplete="email">
+        <label for="si-password">Password</label>
+        <input id="si-password" type="password" required autocomplete="current-password">
+        <button class="btn btn-primary" style="width:100%;" type="submit">Sign in</button>
+      </form>
+
+      <form id="form-signup" style="display:none;">
+        <label for="su-name">Full name</label>
+        <input id="su-name" type="text" required autocomplete="name">
+        <label for="su-email">Email</label>
+        <input id="su-email" type="email" required autocomplete="email">
+        <label for="su-password">Password</label>
+        <input id="su-password" type="password" required minlength="6" autocomplete="new-password">
+        <button class="btn btn-brass" style="width:100%;" type="submit">Create account</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./assets/js/supabase-client.js";
+
+    const banner = document.getElementById("banner");
+    const showBanner = (msg, type = "error") => {
+      banner.innerHTML = `<div class="banner ${type}">${msg}</div>`;
+    };
+
+    // Already signed in? go straight to dashboard.
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) window.location.href = "dashboard.html";
+    });
+
+    const signinForm = document.getElementById("form-signin");
+    const signupForm = document.getElementById("form-signup");
+    const tabSignin = document.getElementById("tab-signin");
+    const tabSignup = document.getElementById("tab-signup");
+
+    tabSignin.onclick = () => {
+      signinForm.style.display = "block"; signupForm.style.display = "none";
+      tabSignin.style.borderBottom = "2px solid var(--ink)";
+      tabSignup.style.borderBottom = "none";
+      banner.innerHTML = "";
+    };
+    tabSignup.onclick = () => {
+      signupForm.style.display = "block"; signinForm.style.display = "none";
+      tabSignup.style.borderBottom = "2px solid var(--ink)";
+      tabSignin.style.borderBottom = "none";
+      banner.innerHTML = "";
+    };
+
+    signinForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("si-email").value;
+      const password = document.getElementById("si-password").value;
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) return showBanner(error.message);
+      window.location.href = "dashboard.html";
+    });
+
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const full_name = document.getElementById("su-name").value;
+      const email = document.getElementById("su-email").value;
+      const password = document.getElementById("su-password").value;
+      const { error } = await supabase.auth.signUp({
+        email, password,
+        options: { data: { full_name } }
+      });
+      if (error) return showBanner(error.message);
+      showBanner("Account created. Check your email if confirmation is required, then sign in.", "success");
+      tabSignin.click();
+    });
+  </script>
+</body>
+</html>
