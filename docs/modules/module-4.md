@@ -1,3 +1,4 @@
+
 # Preparation of the MALDI-TOF Target Plate
 
 1. Place 1 µl of the final extract onto a sample spot of the MALDI-TOF target plate. Foresee one spot with the BTS (calibration and positive control).

@@ -15,8 +15,11 @@ nav = [
   { "Module 5 — Cleaning Reusable Target Plates" = "modules/module-5.md" },
 ]
 
+extra_css = ["stylesheets/extra.css"]
+
 [project.theme]
 language = "en"
+logo = "assets/images/logo.png"
 features = [
   "announce.dismiss",
   "content.code.annotate",
