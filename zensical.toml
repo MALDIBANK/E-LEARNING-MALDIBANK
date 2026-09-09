@@ -1,6 +1,6 @@
 [project]
 site_url = "https://maldibank.github.io/E-LEARNING-MALDIBANK/"
-site_name = "MALDI-TOF Sample Preparation Course"
+site_name = "e-learning for SOP for Microbial identification"
 site_description = "Training course on MALDI-TOF sample preparation for biobanking"
 
 repo_url = "https://github.com/MALDIBANK/E-LEARNING-MALDIBANK"
