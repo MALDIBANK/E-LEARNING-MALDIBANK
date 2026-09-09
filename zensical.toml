@@ -1,0 +1,77 @@
+[project]
+site_url = "https://maldibank.github.io/E-LEARNING-MALDIBANK/"
+site_name = "MALDI-TOF Sample Preparation Course"
+site_description = "Training course on MALDI-TOF sample preparation for biobanking"
+
+repo_url = "https://github.com/MALDIBANK/E-LEARNING-MALDIBANK"
+repo_name = "MALDIBANK/E-LEARNING-MALDIBANK"
+
+nav = [
+  { "Overview" = "index.md" },
+  { "Module 1 — Introduction, Safety & Materials" = "modules/module-1.md" },
+  { "Module 2 — Sample Prep: Yeast & Filamentous Fungi" = "modules/module-2.md" },
+  { "Module 3 — Sample Prep: Bacteria" = "modules/module-3.md" },
+  { "Module 4 — Preparing the MALDI-TOF Target Plate" = "modules/module-4.md" },
+  { "Module 5 — Cleaning Reusable Target Plates" = "modules/module-5.md" },
+]
+
+[project.theme]
+language = "en"
+features = [
+  "announce.dismiss",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
