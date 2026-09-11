@@ -8,6 +8,10 @@
 - Culture the strains on a suitable solid culture medium (Petri dishes) at optimal growth temperature (usually 25–28°C). Seed the agar surface at several points to maximize growth.
 - Incubate for 2 days (yeast) or 3 days (filamentous fungi) at 25°C. If the growth is too limited after 3 days, extend the incubation until sufficient material is available to perform an extraction.
 
+
+![Figure 1. Cultivation tubes after incubation showing suitable fungal growth.](../assets/images/figure-1.png)
+*Figure 1. Cultivation tubes after incubation showing suitable fungal growth.*
+
 ### Protein extraction
 
 1. Prepare pre-labelled 1.5 ml microtubes containing 300 µl of sterile water, one tube per culture.
@@ -36,6 +40,10 @@
 
 - Inoculate the liquid cultivation tubes (e.g. Sabouraud Dextrose Broth) with the biological material and close the lid. For sporulating fungi, use a wetted cotton swab to collect spores by touching the sporulating surface once. For non-sporulating fungi, collect a small amount of young mycelium.
 - Place the tubes in the rotator incubator and incubate at 25°C overnight, or until sufficient biological material is observed. Liquid cultivation is faster than solid — one to two days is usually enough.
+
+
+![Figure 2. Cultivation tubes after settling down showing suitable sedimentation.](../assets/images/figure-2.png)
+*Figure 2. Cultivation tubes after settling down showing suitable sedimentation.*
 
 ### Protein extraction
 
