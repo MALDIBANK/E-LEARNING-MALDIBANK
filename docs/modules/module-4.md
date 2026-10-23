@@ -14,3 +14,15 @@
 The plate is then ready to be analysed.
 
 > **Note:** once a sample extract has dried, the HCCA matrix must be added within 30 minutes. Prepared MALDI-TOF target plates must be analysed within 24h.
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/MmY-vgS9RcE"
+    title="Sample preparation for MALDI TOF MS Spectra VI: Preparation of the MALDI TOF MS Target Plate"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI TOF MS Spectra VI: Preparation of the MALDI TOF MS Target Plate*
