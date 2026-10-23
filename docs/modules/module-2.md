@@ -63,3 +63,39 @@
 11. Let the pellet air-dry for approximately 5–15 minutes (same drying guidance as above — a damp pellet is fine, an overdried one is not).
 12. Add 50 µl of 70% formic acid, vortex, incubate up to 5 minutes; then add 50 µl of acetonitrile, vortex, incubate up to 5 minutes (same volume-adjustment rule as above).
 13. Centrifuge for 2 minutes at 13,000 g. The supernatant is the final extract. Store at **-20°C** until further analysis.
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/isdYVddFTjQ"
+    title="Sample preparation for MALDI-TOF MS Spectra II: Culturing Fungal, Yeast and Bacterial Strains"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI-TOF MS Spectra II: Culturing Fungal, Yeast and Bacterial Strains*
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/ZbEhASFu4ew"
+    title="Sample preparation for MALDI-TOF MS Spectra III: Sample Preparation from Yeast"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI-TOF MS Spectra III: Sample Preparation from Yeast*
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/rqGNs7Gi40g"
+    title="Sample preparation for MALDI-TOF MS Spectra IV: Sample Preparation from Filamentous Fungi"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI-TOF MS Spectra IV: Sample Preparation from Filamentous Fungi*
