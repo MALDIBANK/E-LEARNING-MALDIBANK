@@ -39,7 +39,7 @@ Inoculate the liquid cultivation tubes with the biological material and close th
 6. Remove the supernatant by pipetting or decanting.
 7. Centrifuge again briefly (1–2 minutes) at 13,000 g and remove the residual supernatant.
 8. Let the pellet air-dry for approximately 5–15 minutes.
-9. Once dried, add 40 µl of 70% formic acid and vortex gently.
+9. Once dried, add 40 µl of 70% formic acid and vortex gently. If the pellet is too compact, it can be fragmented with the pipette tip while adding the formic acid.
 10. Add 40 µl of acetonitrile and vortex gently (same volume-adjustment rule as the solid-media protocol).
 11. Centrifuge for 2 minutes at 13,000 g. The supernatant is the final extract. Store at **-20°C** until further analysis.
 

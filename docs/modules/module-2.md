@@ -8,10 +8,6 @@
 - Culture the strains on a suitable solid culture medium (Petri dishes) at optimal growth temperature (usually 25–28°C). Seed the agar surface at several points to maximize growth.
 - Incubate for 2 days (yeast) or 3 days (filamentous fungi) at 25°C. If the growth is too limited after 3 days, extend the incubation until sufficient material is available to perform an extraction.
 
-
-![Figure 1. Cultivation tubes after incubation showing suitable fungal growth.](../assets/images/figure-1.png)
-*Figure 1. Cultivation tubes after incubation showing suitable fungal growth.*
-
 ### Protein extraction
 
 - Prepare pre-labelled 1.5 ml microtubes containing 300 µl of sterile water, one tube per culture.
@@ -39,15 +35,17 @@
 ### Culture
 
 - Inoculate the liquid cultivation tubes (e.g. Sabouraud Dextrose Broth) with the biological material and close the lid. For sporulating fungi, use a wetted cotton swab to collect spores by touching the sporulating surface once. For non-sporulating fungi, collect a small amount of young mycelium.
-- Place the tubes in the rotator incubator and incubate at 25°C overnight, or until sufficient biological material is observed. Liquid cultivation is faster than solid — one to two days is usually enough.
+- Place the tubes in the rotator incubator and incubate at 25°C overnight, or until sufficient biological material is observed (Figure 1). Liquid cultivation is faster than solid — one to two days is usually enough.
 
+![Figure 1. Cultivation tubes after incubation showing suitable fungal growth.](../assets/images/figure-1.png)
+*Figure 1. Cultivation tubes after incubation showing suitable fungal growth.*
 
 ![Figure 2. Cultivation tubes after settling down showing suitable sedimentation.](../assets/images/figure-2.png)
 *Figure 2. Cultivation tubes after settling down showing suitable sedimentation.*
 
 ### Protein extraction
 
-1. Remove the cultivation tubes from the rotator, place them on the bench, and let the biological material settle for 1–60 minutes depending on the species.
+1. Remove the cultivation tubes from the rotator, place them on the bench, and let the biological material settle for 1–60 minutes depending on the species. Wait until optimal sedimentation is obtained (Figure 2).
 2. Harvest 1500 µl from the sediment into a pre-labelled 1.5 ml microtube using a disposable Pasteur pipette.
 3. Centrifuge for 2 minutes at 13,000 g and remove the supernatant with a micropipette.
 
@@ -64,7 +62,6 @@
 12. Add 50 µl of 70% formic acid, vortex, incubate up to 5 minutes; then add 50 µl of acetonitrile, vortex, incubate up to 5 minutes (same volume-adjustment rule as above).
 13. Centrifuge for 2 minutes at 13,000 g. The supernatant is the final extract. Store at **-20°C** until further analysis.
 
-
 <div class="video-wrapper">
   <iframe src="https://www.youtube-nocookie.com/embed/isdYVddFTjQ"
     title="Sample preparation for MALDI-TOF MS Spectra II: Culturing Fungal, Yeast and Bacterial Strains"
@@ -76,7 +73,6 @@
 
 *Video: Sample preparation for MALDI-TOF MS Spectra II: Culturing Fungal, Yeast and Bacterial Strains*
 
-
 <div class="video-wrapper">
   <iframe src="https://www.youtube-nocookie.com/embed/ZbEhASFu4ew"
     title="Sample preparation for MALDI-TOF MS Spectra III: Sample Preparation from Yeast"
@@ -87,7 +83,6 @@
 </div>
 
 *Video: Sample preparation for MALDI-TOF MS Spectra III: Sample Preparation from Yeast*
-
 
 <div class="video-wrapper">
   <iframe src="https://www.youtube-nocookie.com/embed/rqGNs7Gi40g"
