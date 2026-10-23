@@ -14,3 +14,15 @@
 9. Let the plate dry completely for 10–20 minutes in the open air.
 
 This step applies only if your target plates are reusable — disposable plates do not require this procedure.
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/U04jm2vqhHo"
+    title="Sample preparation for MALDI TOF MS Spectra VII: Cleaning Reusable Target Plates"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI TOF MS Spectra VII: Cleaning Reusable Target Plates*
