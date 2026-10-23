@@ -13,6 +13,7 @@ nav = [
   { "Module 3 — Sample Prep: Bacteria" = "modules/module-3.md" },
   { "Module 4 — Preparing the MALDI-TOF Target Plate" = "modules/module-4.md" },
   { "Module 5 — Cleaning Reusable Target Plates" = "modules/module-5.md" },
+  { "Final exam" = "exam.md" },
 ]
 
 extra_css = ["stylesheets/extra.css"]
