@@ -37,11 +37,15 @@
 - Inoculate the liquid cultivation tubes (e.g. Sabouraud Dextrose Broth) with the biological material and close the lid. For sporulating fungi, use a wetted cotton swab to collect spores by touching the sporulating surface once. For non-sporulating fungi, collect a small amount of young mycelium.
 - Place the tubes in the rotator incubator and incubate at 25°C overnight, or until sufficient biological material is observed (Figure 1). Liquid cultivation is faster than solid — one to two days is usually enough.
 
-![Figure 1. Cultivation tubes after incubation showing suitable fungal growth.](../assets/images/figure-1.png)
-*Figure 1. Cultivation tubes after incubation showing suitable fungal growth.*
+<figure markdown="span">
+  ![Figure 1. Cultivation tubes after incubation showing suitable fungal growth.](../assets/images/figure-1.png)
+  <figcaption>Figure 1. Cultivation tubes after incubation showing suitable fungal growth.</figcaption>
+</figure>
 
-![Figure 2. Cultivation tubes after settling down showing suitable sedimentation.](../assets/images/figure-2.png)
-*Figure 2. Cultivation tubes after settling down showing suitable sedimentation.*
+<figure markdown="span">
+  ![Figure 2. Cultivation tubes after settling down showing suitable sedimentation.](../assets/images/figure-2.png)
+  <figcaption>Figure 2. Cultivation tubes after settling down showing suitable sedimentation.</figcaption>
+</figure>
 
 ### Protein extraction
 
