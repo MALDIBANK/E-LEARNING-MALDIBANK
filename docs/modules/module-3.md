@@ -42,3 +42,27 @@ Inoculate the liquid cultivation tubes with the biological material and close th
 9. Once dried, add 40 µl of 70% formic acid and vortex gently.
 10. Add 40 µl of acetonitrile and vortex gently (same volume-adjustment rule as the solid-media protocol).
 11. Centrifuge for 2 minutes at 13,000 g. The supernatant is the final extract. Store at **-20°C** until further analysis.
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/isdYVddFTjQ"
+    title="Sample preparation for MALDI-TOF MS Spectra II: Culturing Fungal, Yeast and Bacterial Strains"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI-TOF MS Spectra II: Culturing Fungal, Yeast and Bacterial Strains*
+
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/Rg6MsUrx7Uk"
+    title="Sample preparation for MALDI TOF MS Spectra V: Sample Preparation from Bacteria"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI TOF MS Spectra V: Sample Preparation from Bacteria*
