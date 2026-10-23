@@ -14,7 +14,7 @@
 
 ### Protein extraction
 
-1. Prepare pre-labelled 1.5 ml microtubes containing 300 µl of sterile water, one tube per culture.
+- Prepare pre-labelled 1.5 ml microtubes containing 300 µl of sterile water, one tube per culture.
 2. Using sterile forceps or loops, gently scrape the surface of the culture to collect yeast cells (or spores and mycelium for filamentous fungi), taking care not to remove any culture medium. Aim to collect an amount roughly the size of a lentil (young material from the outer edge of the colony).
 3. Transfer the collected material into the microtube containing sterile water.
 4. Vortex the tube shortly and add 900 µl of absolute ethanol.
