@@ -3,20 +3,6 @@
 
 ## Introduction
 
-<div class="video-wrapper">
-  <iframe src="https://www.youtube-nocookie.com/embed/bL7d_UOixbI"
-    title="Sample preparation for MALDI-TOF MS Spectra I: Introduction"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
-</div>
-
-*Video: Sample preparation for MALDI-TOF MS Spectra I: Introduction*
-
-
-
-
 This procedure describes the sample preparation for the identification of bacteria, yeast, and filamentous fungi by matrix-assisted laser desorption/ionization – time-of-flight mass spectrometry (MALDI-TOF).
 
 This course encompasses the standard operating procedure (SOP) for spectra acquisition for microbial identification using MALDI-TOF MS.
@@ -88,3 +74,14 @@ Place 5 ml of ultrapure water in a 50 ml Falcon tube and add 20 ml of TFA. Mix g
 
 Once you're comfortable with the safety requirements, equipment, and solutions above, mark this module complete and continue to the sample preparation procedures.
 
+
+<div class="video-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/bL7d_UOixbI"
+    title="Sample preparation for MALDI-TOF MS Spectra I: Introduction"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="width:100%; aspect-ratio:16/9; border:0;"></iframe>
+</div>
+
+*Video: Sample preparation for MALDI-TOF MS Spectra I: Introduction*
