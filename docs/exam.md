@@ -5,7 +5,7 @@ You have reached the end of the course. The final exam checks what you learned i
 ## Before you start
 
 - Complete all five modules first.
-- The exam has 12 questions (true/false and multiple choice).
+- The exam has 12 questions (open, true/false and multiple choice).
 - You need at least 80% correct answers to pass.
 - It takes about 10 minutes.
 - You will be asked for your name and email address. Your result will be sent to the email address you provide.
