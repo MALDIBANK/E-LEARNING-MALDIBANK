@@ -12,13 +12,15 @@ Learn more about the project at [maldibank.eu](https://maldibank.eu/).
 
 ## Course modules
 
-1. [Introduction, Safety & Materials](modules/module-1.md)
-2. [Sample Prep — Yeast & Filamentous Fungi](modules/module-2.md)
-3. [Sample Prep — Bacteria](modules/module-3.md)
-4. [Preparing the MALDI-TOF Target Plate](modules/module-4.md)
-5. [Cleaning Reusable Target Plates](modules/module-5.md)
 
-Work through the modules in order using the navigation on the left.
+To start the e-learning, see the button at the bottom right of this page.
+1. Introduction, Safety & Materials
+2. Sample Prep — Yeast & Filamentous Fungi
+3. Sample Prep — Bacteria
+4. Preparing the MALDI-TOF Target Plate
+5. Cleaning Reusable Target Plates
+
+Please complete all five modules in order.
 
 ---
 
