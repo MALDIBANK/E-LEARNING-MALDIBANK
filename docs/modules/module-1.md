@@ -72,7 +72,7 @@ Place 5 ml of ultrapure water in a 50 ml Falcon tube and add 20 ml of TFA. Mix g
 
 ---
 
-Once you're comfortable with the safety requirements, equipment, and solutions above, mark this module complete and continue to the sample preparation procedures.
+Once you're comfortable with the safety requirements, equipment, and solutions above, continue to the sample preparation procedures.
 
 
 <div class="video-wrapper">
